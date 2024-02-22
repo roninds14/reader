@@ -141,7 +141,7 @@ class _MyHomePageState extends State<MyHomePage> {
         Radius.circular(24.0),
       ),
       child: Opacity(
-        opacity: flag[1] == _language ? 1.0 : 0.6,
+        opacity: flag[1] == _language ? 1.0 : 0.4,
         child: CircleAvatar(
           backgroundImage: AssetImage(flag[0]),
         ),
