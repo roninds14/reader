@@ -69,8 +69,11 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color.fromARGB(0, 3, 82, 64),
+        ),
         useMaterial3: true,
+        fontFamily: 'Roboto',
       ),
       darkTheme: ThemeData.dark(),
       localizationsDelegates: const [
@@ -153,12 +156,12 @@ class _MyHomePageState extends State<MyHomePage> {
     return FlutterSwitch(
       showOnOff: true,
       value: _themeMode ?? true,
-      activeColor: const Color.fromARGB(255, 50, 64, 168),
+      activeColor: Theme.of(context).colorScheme.secondary,
       activeText: AppLocalizations.of(context)!.lightTheme,
       activeTextColor: Colors.white,
-      activeIcon: const Icon(
+      activeIcon: Icon(
         Icons.light_mode,
-        color: Color.fromARGB(255, 50, 64, 168),
+        color: Theme.of(context).colorScheme.secondary,
       ),
       inactiveText: AppLocalizations.of(context)!.darkTheme,
       inactiveIcon: const Icon(
