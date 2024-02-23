@@ -115,6 +115,10 @@ class _PreferencesPageState extends State<PreferencesPage> {
             Icons.light_mode,
             color: Theme.of(context).colorScheme.secondary,
           ),
+          inactiveIcon: Icon(
+            Icons.dark_mode,
+            color: Theme.of(context).colorScheme.secondary,
+          ),
           inactiveText: AppLocalizations.of(context)!.darkTheme,
           width: 90.0,
           height: 30.0,
