@@ -1,5 +1,9 @@
 {
-    "helloWorld": "Olá mundo",
+	"preferences": "Preferências!",
 	"lightTheme": "Claro",
-	"darkTheme": "Escuro"
+	"darkTheme": "Escuro",
+	"selectLanguage": "Selecione o idioma!",
+	"selectTheme": "Selecione o tema!",
+	"btnContinue": "Continuar",
+	"youCanChangeLater": "*Você poderá alterar suas escolhas em configurações"
 }

@@ -88,7 +88,7 @@ class _MyAppState extends State<MyApp> {
         Locale('en'),
         Locale('es'),
       ],
-      locale: Locale(_locale ?? "pt"),
+      locale: Locale(_locale ?? "en"),
       home: const MyHomePage(),
     );
   }
@@ -152,32 +152,101 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  FlutterSwitch _getThemeSwitch() {
-    return FlutterSwitch(
-      showOnOff: true,
-      value: _themeMode ?? true,
-      activeColor: Theme.of(context).colorScheme.secondary,
-      activeText: AppLocalizations.of(context)!.lightTheme,
-      activeTextColor: Colors.white,
-      activeIcon: Icon(
-        Icons.light_mode,
-        color: Theme.of(context).colorScheme.secondary,
+  Text _getSubtitle(String text) {
+    return Text(
+      text,
+      style: const TextStyle(
+        fontStyle: FontStyle.italic,
+        fontWeight: FontWeight.bold,
+        fontSize: 25.0,
       ),
-      inactiveText: AppLocalizations.of(context)!.darkTheme,
-      inactiveIcon: const Icon(
-        Icons.dark_mode,
-        color: Colors.black38,
-      ),
-      width: 90.0,
-      height: 30.0,
-      valueFontSize: 14.0,
-      onToggle: (value) {
-        setState(() {
-          MyApp.of(context)!.setTheme(value);
-          _themeMode = value;
-          _saveUserThemePrefs(value);
-        });
-      },
+    );
+  }
+
+  Column _getLanguageColumn() {
+    return Column(
+      children: [
+        _getSubtitle(AppLocalizations.of(context)!.selectLanguage),
+        const SizedBox(
+          height: 15.0,
+        ),
+        Wrap(
+          alignment: WrapAlignment.center,
+          runAlignment: WrapAlignment.spaceEvenly,
+          spacing: 20.0,
+          children: [
+            ...[
+              usaFlag,
+              brazilFlag,
+              spainFlag,
+            ].map((flag) => imageFlag(flag)),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Column _getThemeSwitch() {
+    return Column(
+      children: [
+        _getSubtitle(AppLocalizations.of(context)!.selectTheme),
+        const SizedBox(
+          height: 15.0,
+        ),
+        FlutterSwitch(
+          showOnOff: true,
+          value: _themeMode ?? true,
+          activeColor: Theme.of(context).colorScheme.secondary,
+          activeText: AppLocalizations.of(context)!.lightTheme,
+          activeTextColor: Colors.white,
+          activeIcon: Icon(
+            Icons.light_mode,
+            color: Theme.of(context).colorScheme.secondary,
+          ),
+          inactiveText: AppLocalizations.of(context)!.darkTheme,
+          width: 90.0,
+          height: 30.0,
+          valueFontSize: 14.0,
+          onToggle: (value) {
+            setState(() {
+              MyApp.of(context)!.setTheme(value);
+              _themeMode = value;
+              _saveUserThemePrefs(value);
+            });
+          },
+        ),
+      ],
+    );
+  }
+
+  Column _getButtonArea() {
+    return Column(
+      children: [
+        ElevatedButton(
+          style: ButtonStyle(
+            minimumSize: const MaterialStatePropertyAll(
+              Size(55.0, 55.0),
+            ),
+            overlayColor: MaterialStatePropertyAll(
+              Theme.of(context).colorScheme.secondary,
+            ),
+            elevation: const MaterialStatePropertyAll(7.0),
+          ),
+          onPressed: () {},
+          child: Text(
+            AppLocalizations.of(context)!.btnContinue,
+            style: const TextStyle(
+              fontSize: 23.0,
+            ),
+          ),
+        ),
+        const SizedBox(
+          height: 8.0,
+        ),
+        Text(
+          AppLocalizations.of(context)!.youCanChangeLater,
+        ),
+      ],
     );
   }
 
@@ -186,25 +255,16 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(AppLocalizations.of(context)!.helloWorld),
+        title: Text(AppLocalizations.of(context)!.preferences),
+        centerTitle: true,
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Wrap(
-              alignment: WrapAlignment.center,
-              runAlignment: WrapAlignment.spaceEvenly,
-              spacing: 20.0,
-              children: [
-                ...[
-                  brazilFlag,
-                  usaFlag,
-                  spainFlag,
-                ].map((flag) => imageFlag(flag)),
-              ],
-            ),
+            _getLanguageColumn(),
             _getThemeSwitch(),
+            _getButtonArea(),
           ],
         ),
       ),
