@@ -3,6 +3,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_flavor/flutter_flavor.dart';
 import 'package:reader/views/preferences_page.dart';
+import 'package:reader/views/terms_page.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -52,15 +53,16 @@ class _MyAppState extends State<MyApp> {
     _loadUserPrefs();
   }
 
-  Future<void> _loadUserPrefs() async {
+  Future<bool> _loadUserPrefs() async {
     final prefs = await SharedPreferences.getInstance();
-    setState(() {
-      String? language = prefs.getString('language');
-      String? theme = prefs.getString('theme');
 
-      setLocale(language!);
-      setTheme(theme! == "light");
-    });
+    String? language = prefs.getString('language');
+    String? theme = prefs.getString('theme');
+
+    setLocale(language!);
+    setTheme(theme! == "light");
+
+    return prefs.getBool("prefsPage")!;
   }
 
   // This widget is the root of your application.
@@ -89,10 +91,54 @@ class _MyAppState extends State<MyApp> {
         Locale('es'),
       ],
       locale: Locale(_locale ?? "en"),
-      initialRoute: "preferences",
+      home: const HomePage(),
       routes: {
         "preferences": (context) => const PreferencesPage(),
+        "terms": (context) => const TermsPage(),
       },
+    );
+  }
+}
+
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    super.initState();
+
+    _loadUserPrefs();
+  }
+
+  Future<void> _loadUserPrefs() async {
+    final prefs = await SharedPreferences.getInstance();
+
+    bool? prefsPage = prefs.getBool("prefsPage");
+
+    if (prefsPage ?? false) {
+      redirect("terms");
+    } else {
+      redirect("preferences");
+    }
+  }
+
+  void redirect(String route) {
+    Navigator.of(context).pushNamed(route);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: CircularProgressIndicator(
+          color: Theme.of(context).colorScheme.inversePrimary,
+        ),
+      ),
     );
   }
 }

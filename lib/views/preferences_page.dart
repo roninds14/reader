@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:reader/components/custom_app_bar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_switch/flutter_switch.dart';
@@ -43,6 +44,11 @@ class _PreferencesPageState extends State<PreferencesPage> {
   Future<void> _saveUserThemePrefs(bool theme) async {
     final prefs = await SharedPreferences.getInstance();
     prefs.setString('theme', theme ? "light" : "dark");
+  }
+
+  Future<void> _saveUserPrefs() async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setBool('prefsPage', true);
   }
 
   InkWell imageFlag(List<String> flag) {
@@ -148,7 +154,11 @@ class _PreferencesPageState extends State<PreferencesPage> {
             ),
             elevation: const MaterialStatePropertyAll(7.0),
           ),
-          onPressed: () {},
+          onPressed: () {
+            _saveUserPrefs();
+
+            Navigator.pushNamed(context, "terms");
+          },
           child: Text(
             AppLocalizations.of(context)!.btnContinue,
             style: const TextStyle(
@@ -169,10 +179,9 @@ class _PreferencesPageState extends State<PreferencesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(AppLocalizations.of(context)!.preferences),
-        centerTitle: true,
+      appBar: CustomAppBar.build(
+        context,
+        AppLocalizations.of(context)!.preferences,
       ),
       body: Center(
         child: Column(
