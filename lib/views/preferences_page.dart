@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:reader/components/custom_app_bar.dart';
+import 'package:reader/components/custom_button.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_switch/flutter_switch.dart';
@@ -144,28 +145,11 @@ class _PreferencesPageState extends State<PreferencesPage> {
   Column _getButtonArea() {
     return Column(
       children: [
-        ElevatedButton(
-          style: ButtonStyle(
-            minimumSize: const MaterialStatePropertyAll(
-              Size(55.0, 55.0),
-            ),
-            overlayColor: MaterialStatePropertyAll(
-              Theme.of(context).colorScheme.secondary,
-            ),
-            elevation: const MaterialStatePropertyAll(7.0),
-          ),
-          onPressed: () {
-            _saveUserPrefs();
+        CustomButton.build(context, () {
+          _saveUserPrefs();
 
-            Navigator.pushNamed(context, "terms");
-          },
-          child: Text(
-            AppLocalizations.of(context)!.btnContinue,
-            style: const TextStyle(
-              fontSize: 23.0,
-            ),
-          ),
-        ),
+          Navigator.pushNamed(context, "terms");
+        }),
         const SizedBox(
           height: 8.0,
         ),

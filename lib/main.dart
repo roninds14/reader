@@ -3,6 +3,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_flavor/flutter_flavor.dart';
 import 'package:reader/views/preferences_page.dart';
+import 'package:reader/views/reader_page.dart';
 import 'package:reader/views/terms_page.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
@@ -95,6 +96,7 @@ class _MyAppState extends State<MyApp> {
       routes: {
         "preferences": (context) => const PreferencesPage(),
         "terms": (context) => const TermsPage(),
+        "reader": (context) => const ReaderPage(),
       },
     );
   }
@@ -119,8 +121,11 @@ class _HomePageState extends State<HomePage> {
     final prefs = await SharedPreferences.getInstance();
 
     bool? prefsPage = prefs.getBool("prefsPage");
+    bool? termsPage = prefs.getBool("termsPage");
 
-    if (prefsPage ?? false) {
+    if (termsPage ?? false) {
+      redirect("reader");
+    } else if (prefsPage ?? false) {
       redirect("terms");
     } else {
       redirect("preferences");
@@ -136,7 +141,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: Center(
         child: CircularProgressIndicator(
-          color: Theme.of(context).colorScheme.inversePrimary,
+          color: Theme.of(context).colorScheme.primary,
         ),
       ),
     );

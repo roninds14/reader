@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:reader/components/custom_app_bar.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:reader/components/custom_button.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class TermsPage extends StatefulWidget {
   const TermsPage({super.key});
@@ -11,6 +13,24 @@ class TermsPage extends StatefulWidget {
 
 class _TermsPageState extends State<TermsPage> {
   bool _checkboxValue = false;
+  void Function()? _buttonFunction = null;
+
+  void _buttonActive(bool checkboxValue) {
+    setState(() {
+      _buttonFunction = checkboxValue
+          ? () {
+              _saveUserPrefs();
+
+              Navigator.of(context).pushNamed("reader");
+            }
+          : null;
+    });
+  }
+
+  Future<void> _saveUserPrefs() async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setBool('termsPage', true);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,36 +72,30 @@ class _TermsPageState extends State<TermsPage> {
                     onChanged: (value) {
                       setState(() {
                         _checkboxValue = value!;
+
+                        _buttonActive(value);
                       });
                     },
                   ),
-                  const Flexible(
-                    child: Text(
-                      "Confirmo que li e concordo com os termos e condições de uso.",
-                      textAlign: TextAlign.justify,
+                  Flexible(
+                    child: GestureDetector(
+                      child: Text(
+                        AppLocalizations.of(context)!.confirmTermsAcept,
+                        textAlign: TextAlign.justify,
+                      ),
+                      onTap: () {
+                        setState(() {
+                          _checkboxValue = !_checkboxValue;
+
+                          _buttonActive(_checkboxValue);
+                        });
+                      },
                     ),
                   ),
                 ],
               ),
             ),
-            ElevatedButton(
-              style: ButtonStyle(
-                minimumSize: const MaterialStatePropertyAll(
-                  Size(55.0, 55.0),
-                ),
-                overlayColor: MaterialStatePropertyAll(
-                  Theme.of(context).colorScheme.secondary,
-                ),
-                elevation: const MaterialStatePropertyAll(7.0),
-              ),
-              onPressed: null,
-              child: Text(
-                AppLocalizations.of(context)!.btnContinue,
-                style: const TextStyle(
-                  fontSize: 23.0,
-                ),
-              ),
-            ),
+            CustomButton.build(context, _buttonFunction),
           ],
         ),
       ),
