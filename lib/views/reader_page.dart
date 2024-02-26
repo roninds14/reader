@@ -16,6 +16,10 @@ class _ReaderPageState extends State<ReaderPage> {
         context,
         "Reader",
         centerTitle: false,
+        automaticallyImplyLeading: true,
+      ),
+      drawer: const Drawer(
+        child: Text("Drawer"),
       ),
     );
   }

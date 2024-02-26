@@ -13,7 +13,7 @@ class TermsPage extends StatefulWidget {
 
 class _TermsPageState extends State<TermsPage> {
   bool _checkboxValue = false;
-  void Function()? _buttonFunction = null;
+  void Function()? _buttonFunction;
 
   void _buttonActive(bool checkboxValue) {
     setState(() {
