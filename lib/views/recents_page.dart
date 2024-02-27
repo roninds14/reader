@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:reader/components/custom_app_bar.dart';
 import 'package:reader/components/main_drawer.dart';
 
-class ReaderPage extends StatefulWidget {
-  const ReaderPage({super.key});
+class RecentsPage extends StatefulWidget {
+  const RecentsPage({super.key});
 
   @override
-  State<ReaderPage> createState() => _ReaderPageState();
+  State<RecentsPage> createState() => _RecentsPageState();
 }
 
-class _ReaderPageState extends State<ReaderPage> {
+class _RecentsPageState extends State<RecentsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

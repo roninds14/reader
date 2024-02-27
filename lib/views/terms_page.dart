@@ -21,7 +21,7 @@ class _TermsPageState extends State<TermsPage> {
           ? () {
               _saveUserPrefs();
 
-              Navigator.of(context).pushNamed("reader");
+              Navigator.of(context).pushNamed("recents");
             }
           : null;
     });

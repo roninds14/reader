@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:reader/components/custom_app_bar.dart';
 import 'package:reader/components/custom_button.dart';
+import 'package:reader/components/theme_flutter_switch.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:flutter_switch/flutter_switch.dart';
 import '../main.dart';
 
 import '../configs/config.dart';
@@ -16,7 +16,6 @@ class PreferencesPage extends StatefulWidget {
 }
 
 class _PreferencesPageState extends State<PreferencesPage> {
-  bool? _themeMode;
   String? _language;
 
   @override
@@ -29,10 +28,7 @@ class _PreferencesPageState extends State<PreferencesPage> {
   Future<void> _loadUserPrefs() async {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
-      String? theme = prefs.getString('theme');
       _language = prefs.getString('language');
-
-      _themeMode = theme! == "light";
     });
   }
 
@@ -40,11 +36,6 @@ class _PreferencesPageState extends State<PreferencesPage> {
     final prefs = await SharedPreferences.getInstance();
     prefs.setString('language', locale);
     _language = locale;
-  }
-
-  Future<void> _saveUserThemePrefs(bool theme) async {
-    final prefs = await SharedPreferences.getInstance();
-    prefs.setString('theme', theme ? "light" : "dark");
   }
 
   Future<void> _saveUserPrefs() async {
@@ -112,32 +103,7 @@ class _PreferencesPageState extends State<PreferencesPage> {
         const SizedBox(
           height: 15.0,
         ),
-        FlutterSwitch(
-          showOnOff: true,
-          value: _themeMode ?? true,
-          activeColor: Theme.of(context).colorScheme.secondary,
-          activeText: AppLocalizations.of(context)!.lightTheme,
-          activeTextColor: Colors.white,
-          activeIcon: Icon(
-            Icons.light_mode,
-            color: Theme.of(context).colorScheme.secondary,
-          ),
-          inactiveIcon: Icon(
-            Icons.dark_mode,
-            color: Theme.of(context).colorScheme.secondary,
-          ),
-          inactiveText: AppLocalizations.of(context)!.darkTheme,
-          width: 90.0,
-          height: 30.0,
-          valueFontSize: 14.0,
-          onToggle: (value) {
-            setState(() {
-              MyApp.of(context)!.setTheme(value);
-              _themeMode = value;
-              _saveUserThemePrefs(value);
-            });
-          },
-        ),
+        const ThemeFlutterSwitch(),
       ],
     );
   }

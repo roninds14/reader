@@ -3,7 +3,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_flavor/flutter_flavor.dart';
 import 'package:reader/views/preferences_page.dart';
-import 'package:reader/views/reader_page.dart';
+import 'package:reader/views/recents_page.dart';
 import 'package:reader/views/settings_page.dart';
 import 'package:reader/views/terms_page.dart';
 
@@ -97,7 +97,7 @@ class _MyAppState extends State<MyApp> {
       routes: {
         "preferences": (context) => const PreferencesPage(),
         "terms": (context) => const TermsPage(),
-        "reader": (context) => const ReaderPage(),
+        "recents": (context) => const RecentsPage(),
         "settings": (context) => const SettingsPage(),
       },
     );
@@ -126,7 +126,7 @@ class _HomePageState extends State<HomePage> {
     bool? termsPage = prefs.getBool("termsPage");
 
     if (termsPage ?? false) {
-      redirect("reader");
+      redirect("recents");
     } else if (prefsPage ?? false) {
       redirect("terms");
     } else {
