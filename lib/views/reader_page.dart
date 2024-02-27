@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:reader/components/custom_app_bar.dart';
+import 'package:reader/components/main_drawer.dart';
 
 class ReaderPage extends StatefulWidget {
   const ReaderPage({super.key});
@@ -18,9 +19,7 @@ class _ReaderPageState extends State<ReaderPage> {
         centerTitle: false,
         automaticallyImplyLeading: true,
       ),
-      drawer: const Drawer(
-        child: Text("Drawer"),
-      ),
+      drawer: const MainDrawer(),
     );
   }
 }
