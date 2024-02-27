@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:reader/components/custom_app_bar.dart';
 import 'package:reader/components/custom_button.dart';
+import 'package:reader/components/language_wrap_select.dart';
 import 'package:reader/components/theme_flutter_switch.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import '../main.dart';
-
-import '../configs/config.dart';
 
 class PreferencesPage extends StatefulWidget {
   const PreferencesPage({super.key});
@@ -16,50 +14,9 @@ class PreferencesPage extends StatefulWidget {
 }
 
 class _PreferencesPageState extends State<PreferencesPage> {
-  String? _language;
-
-  @override
-  void initState() {
-    super.initState();
-
-    _loadUserPrefs();
-  }
-
-  Future<void> _loadUserPrefs() async {
-    final prefs = await SharedPreferences.getInstance();
-    setState(() {
-      _language = prefs.getString('language');
-    });
-  }
-
-  Future<void> _saveUserLocalePrefs(String locale) async {
-    final prefs = await SharedPreferences.getInstance();
-    prefs.setString('language', locale);
-    _language = locale;
-  }
-
   Future<void> _saveUserPrefs() async {
     final prefs = await SharedPreferences.getInstance();
     prefs.setBool('prefsPage', true);
-  }
-
-  InkWell imageFlag(List<String> flag) {
-    return InkWell(
-      onTap: () {
-        MyApp.of(context)!.setLocale(flag[1]);
-
-        _saveUserLocalePrefs(flag[1]);
-      },
-      borderRadius: const BorderRadius.all(
-        Radius.circular(24.0),
-      ),
-      child: Opacity(
-        opacity: flag[1] == _language ? 1.0 : 0.4,
-        child: CircleAvatar(
-          backgroundImage: AssetImage(flag[0]),
-        ),
-      ),
-    );
   }
 
   Text _getSubtitle(String text) {
@@ -80,18 +37,7 @@ class _PreferencesPageState extends State<PreferencesPage> {
         const SizedBox(
           height: 15.0,
         ),
-        Wrap(
-          alignment: WrapAlignment.center,
-          runAlignment: WrapAlignment.spaceEvenly,
-          spacing: 20.0,
-          children: [
-            ...[
-              usaFlag,
-              brazilFlag,
-              spainFlag,
-            ].map((flag) => imageFlag(flag)),
-          ],
-        ),
+        const LanguageWrapSelect(),
       ],
     );
   }
