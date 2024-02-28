@@ -3,6 +3,7 @@
 	"lightTheme": "Claro",
 	"darkTheme": "Oscuro",
 	"selectLanguage": "¡Selecciona el idioma!",
+	"language": "Idioma:",
 	"selectTheme": "¡Selecciona el tema!",
 	"theme": "Tema:",
 	"btnContinue": "Continuar",

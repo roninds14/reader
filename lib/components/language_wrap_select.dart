@@ -5,7 +5,9 @@ import '../configs/config.dart';
 import '../main.dart';
 
 class LanguageWrapSelect extends StatefulWidget {
-  const LanguageWrapSelect({super.key});
+  const LanguageWrapSelect({this.radius = 20, super.key});
+
+  final double radius;
 
   @override
   State<LanguageWrapSelect> createState() => _LanguageWrapSelectState();
@@ -43,12 +45,13 @@ class _LanguageWrapSelectState extends State<LanguageWrapSelect> {
 
         _saveUserLocalePrefs(flag[1]);
       },
-      borderRadius: const BorderRadius.all(
-        Radius.circular(24.0),
+      borderRadius: BorderRadius.all(
+        Radius.circular(widget.radius),
       ),
       child: Opacity(
         opacity: flag[1] == _language ? 1.0 : 0.4,
         child: CircleAvatar(
+          maxRadius: widget.radius,
           backgroundImage: AssetImage(flag[0]),
         ),
       ),
@@ -61,6 +64,7 @@ class _LanguageWrapSelectState extends State<LanguageWrapSelect> {
       alignment: WrapAlignment.center,
       runAlignment: WrapAlignment.spaceEvenly,
       spacing: 20.0,
+      runSpacing: 10.0,
       children: [
         ...languageFlags.map((flag) => imageFlag(flag)),
       ],
