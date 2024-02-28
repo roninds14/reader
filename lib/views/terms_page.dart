@@ -48,8 +48,8 @@ class _TermsPageState extends State<TermsPage> {
                 color: Theme.of(context).colorScheme.inversePrimary,
               ),
               padding: const EdgeInsets.all(15.0),
-              height: MediaQuery.of(context).size.height * 0.6,
-              width: MediaQuery.of(context).size.width * 0.7,
+              height: MediaQuery.of(context).size.height * 0.4,
+              width: MediaQuery.of(context).size.width * 0.85,
               child: SingleChildScrollView(
                 child: Text(
                   AppLocalizations.of(context)!.termsAndConditions,
