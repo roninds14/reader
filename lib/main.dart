@@ -1,8 +1,13 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_flavor/flutter_flavor.dart';
+import 'package:reader/models/comic.dart';
 import 'package:reader/views/preferences_page.dart';
+import 'package:reader/views/reader_page.dart';
 import 'package:reader/views/recents_page.dart';
 import 'package:reader/views/settings_page.dart';
 import 'package:reader/views/terms_page.dart';
@@ -36,6 +41,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   String? _locale;
   ThemeMode? _theme;
+  Comic? _comic;
 
   void setLocale(String value) {
     setState(() {
@@ -53,6 +59,14 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     _loadUserPrefs();
+
+    _genereteComic();
+  }
+
+  void _genereteComic() async {
+    var inputComic = await rootBundle.loadString("assets/exemple.json");
+    var map = jsonDecode(inputComic);
+    _comic = Comic.fromJson(map);
   }
 
   Future<bool> _loadUserPrefs() async {
@@ -93,12 +107,14 @@ class _MyAppState extends State<MyApp> {
         Locale('es'),
       ],
       locale: Locale(_locale ?? "en"),
-      home: const HomePage(),
+      //home: const HomePage(),
+      initialRoute: "reader",
       routes: {
         "preferences": (context) => const PreferencesPage(),
         "terms": (context) => const TermsPage(),
         "recents": (context) => const RecentsPage(),
         "settings": (context) => const SettingsPage(),
+        "reader": (context) => ReaderPage(comic: _comic!),
       },
     );
   }

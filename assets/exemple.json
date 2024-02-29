@@ -1,0 +1,15 @@
+{
+	"title": "Super Dragon Ball Heroes: Dark Demon Realm Mission! - Capítulo 01",
+	"shortTitle": "Dragon Ball Heroes",
+	"author": "Akira Toriyama",
+	"source": "https://lermanga.org/",
+	"description": "Super Dragon Ball Heroes: Dark Demon Realm Mission! é um mangá spin-off.Ele conta a história do conflito entre a Patrulha do Tempo e o Império das Trevas.",
+	"language": "br",
+	"cover": "https://img.lermanga.org/S/super-dragon-ball-heroes-dark-demon-realm-mission/capitulo-1/00.jpg",
+	"urlModel": "https://img.lermanga.org/S/super-dragon-ball-heroes-dark-demon-realm-mission/capitulo-1/%s.jpg",
+	"initialPageNumber": 1,
+	"numberPages": 32,
+	"decimals": 2,
+	"colectionCode": 1,
+	"tags" : ["action", "martialArts", "adventure"]
+}
