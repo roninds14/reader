@@ -20,6 +20,22 @@ class _RecentsPageState extends State<RecentsPage> {
         automaticallyImplyLeading: true,
       ),
       drawer: const MainDrawer(),
+      body: GridView.builder(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3,
+            childAspectRatio: 0.7,
+            mainAxisSpacing: 10.0,
+            crossAxisSpacing: 5.0,
+          ),
+          padding: const EdgeInsets.only(top: 10.0),
+          itemCount: 300,
+          itemBuilder: (BuildContext context, int index) {
+            return Card(
+              color: Theme.of(context).primaryColor,
+              elevation: 10,
+              child: Center(child: Text('$index')),
+            );
+          }),
     );
   }
 }
