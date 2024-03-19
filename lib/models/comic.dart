@@ -14,6 +14,7 @@ class Comic {
     required this.initialPageNumber,
     required this.numberPages,
     required this.decimals,
+    required this.decimalsSeparator,
     required this.colectionCode,
     required this.tags,
   });
@@ -29,6 +30,7 @@ class Comic {
   final int initialPageNumber;
   final int numberPages;
   final int decimals;
+  final String decimalsSeparator;
   final int colectionCode;
   final List<String> tags;
 
@@ -44,6 +46,7 @@ class Comic {
         initialPageNumber: json['initialPageNumber'] as int,
         numberPages: json['numberPages'] as int,
         decimals: json['decimals'] as int,
+        decimalsSeparator: json['decimalsSeparator'] as String,
         colectionCode: json['colectionCode'] as int,
         tags: List<String>.from(json["tags"].map((x) => x)),
       );
@@ -62,6 +65,7 @@ class Comic {
         "initialPageNumber": instance.initialPageNumber,
         "numberPages": instance.numberPages,
         "decimals": instance.decimals,
+        "decimalsSeparator": instance.decimalsSeparator,
         "colectionCode": instance.colectionCode,
         "tags": List<dynamic>.from(instance.tags.map((x) => x)),
       };

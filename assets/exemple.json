@@ -10,6 +10,7 @@
 	"initialPageNumber": 1,
 	"numberPages": 32,
 	"decimals": 2,
+	"decimalsSeparator": "0",
 	"colectionCode": 1,
 	"tags" : ["action", "martialArts", "adventure"]
 }
