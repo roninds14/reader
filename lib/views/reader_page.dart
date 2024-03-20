@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:reader/components/advertisements.dart';
 import 'package:reader/components/custom_app_bar.dart';
 import 'package:sprintf/sprintf.dart';
 
@@ -31,11 +32,14 @@ class _ReaderPageState extends State<ReaderPage> {
             child: ListView.builder(
               itemCount: comic.numberPages,
               itemBuilder: (_, index) {
-                var imageUrl = sprintf(comic.urlModel, [
-                  index
-                      .toString()
-                      .padLeft(comic.decimals, comic.decimalsSeparator)
-                ]);
+                var imageUrl = sprintf(
+                  comic.urlModel,
+                  [
+                    index
+                        .toString()
+                        .padLeft(comic.decimals, comic.decimalsSeparator)
+                  ],
+                );
 
                 return Container(
                   padding: const EdgeInsets.symmetric(
@@ -70,15 +74,9 @@ class _ReaderPageState extends State<ReaderPage> {
             ),
           ),
         ),
-        Positioned(
-          bottom: 0,
-          child: Container(
-            color: Colors.green,
-            height: MediaQuery.of(context).size.height *
-                (orientation == Orientation.portrait ? 0.10 : 0.15),
-            width: MediaQuery.of(context).size.width,
-          ),
-        )
+        Advertisements(
+          orientation: orientation,
+        ),
       ]);
     });
   }

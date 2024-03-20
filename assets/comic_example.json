@@ -1,0 +1,61 @@
+[
+	{
+		"title": "Super Dragon Ball Heroes: Dark Demon Realm Mission! - Capítulo 01",
+		"shortTitle": "Dragon Ball Heroes",
+		"author": "Akira Toriyama",
+		"source": "https://lermanga.org/",
+		"description": "Super Dragon Ball Heroes: Dark Demon Realm Mission! é um mangá spin-off.Ele conta a história do conflito entre a Patrulha do Tempo e o Império das Trevas.",
+		"language": "br",
+		"cover": "https://img.lermanga.org/S/super-dragon-ball-heroes-dark-demon-realm-mission/capitulo-1/00.jpg",
+		"urlModel": "https://img.lermanga.org/S/super-dragon-ball-heroes-dark-demon-realm-mission/capitulo-1/%s.jpg",
+		"initialPageNumber": 1,
+		"numberPages": 32,
+		"decimals": 2,
+		"decimalsSeparator": "0",
+		"colectionCode": 1,
+		"tags": [
+			"action",
+			"martialArts",
+			"adventure"
+		]
+	},
+	{
+		"title": "Return of the SSS-Class Ranker -- Capítulo 97",
+		"shortTitle": "Return of the SSS-Class Ranker",
+		"author": "Sed lacus nisi",
+		"source": "https://lermanga.org/",
+		"description": "Lokan era o 'Rei da Violência', aquele que reinou como o mais forte em um jogo de realidade virtual, 'O Lorde'. Para seu azar, um pedido de assassinato feito por uma guilda inimiga o fez perder tudo. Mas para sua surpresa, assim que ele acordou, ele havia voltado para três anos atrás! \"Filhos da puta, só me esperem. Eu vou massacrar todos vocês!\" Uma nova história se inicia a partir de Lokan, que viajou no tempo, escalando de volta ao topo!",
+		"language": "br",
+		"cover": "https://img.lermanga.org/R/return-of-the-sss-class-ranker/capitulo-97/1.jpg",
+		"urlModel": "https://img.lermanga.org/R/return-of-the-sss-class-ranker/capitulo-97/%s.jpg",
+		"initialPageNumber": 1,
+		"numberPages": 21,
+		"decimals": 1,
+		"decimalsSeparator": "",
+		"colectionCode": 2,
+		"tags": [
+			"action",
+			"fantasy"
+		]
+	},
+	{
+		"title": "Insanely Talented Player - Capítulo 33",
+		"shortTitle": "Insanely Talented Player - Capítulo 33",
+		"author": "Integer accumsan iaculis",
+		"source": "https://lermanga.org/",
+		"description": "Já fazem seis anos desde que o jogo que decidirá o destino do mundo começou. O jogador mais forte, Herói King Kang Yoosung, que nunca perdeu o lugar como o primeiro nas classificações de rank, diz olá a uma nova temporada. \"Havia acabado... para mim já há muito tempo. Eu só estou fazendo isso pelo dinheiro.\" [Atributo de provocação aumenta exponencialmente!] [O Lorde Palhaço expressa satisfação com o comportamento do contratante!] A jornada de sobrevivência de um jogador com talento insano começa agora!",
+		"language": "br",
+		"cover": "https://img.lermanga.org/I/insanely-talented-player/capitulo-33/1.jpg",
+		"urlModel": "https://img.lermanga.org/I/insanely-talented-player/capitulo-33/%s.jpg",
+		"initialPageNumber": 1,
+		"numberPages": 20,
+		"decimals": 1,
+		"decimalsSeparator": "",
+		"colectionCode": 3,
+		"tags": [
+			"action",
+			"fantasy",
+			"adventure"
+		]
+	}
+]
