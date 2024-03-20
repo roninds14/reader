@@ -35,7 +35,7 @@ class _ReaderPageState extends State<ReaderPage> {
                 var imageUrl = sprintf(
                   comic.urlModel,
                   [
-                    index
+                    (index + comic.initialPageNumber)
                         .toString()
                         .padLeft(comic.decimals, comic.decimalsSeparator)
                   ],

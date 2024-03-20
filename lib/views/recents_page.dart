@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:reader/components/advertisements.dart';
+import 'package:reader/components/comic_card.dart';
 import 'package:reader/components/custom_app_bar.dart';
 import 'package:reader/components/main_drawer.dart';
 import 'package:reader/models/comic.dart';
@@ -59,23 +60,22 @@ class _RecentsPageState extends State<RecentsPage> {
                     (orientation == Orientation.portrait ? 0.10 : 0.15),
               ),
               child: GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                    childAspectRatio: 0.7,
-                    mainAxisSpacing: 10.0,
-                    crossAxisSpacing: 5.0,
-                  ),
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 10.0,
-                  ),
-                  itemCount: listComic.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Card(
-                      color: Theme.of(context).primaryColor,
-                      elevation: 10,
-                      child: Center(child: Text(listComic[index].shortTitle)),
-                    );
-                  }),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  childAspectRatio: 0.7,
+                  mainAxisSpacing: 10.0,
+                  crossAxisSpacing: 5.0,
+                ),
+                padding: const EdgeInsets.symmetric(
+                  vertical: 10.0,
+                ),
+                itemCount: listComic.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return ComicCard(
+                    comic: listComic[index],
+                  );
+                },
+              ),
             ),
           ),
           Advertisements(
